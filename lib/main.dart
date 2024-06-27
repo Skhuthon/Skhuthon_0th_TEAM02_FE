@@ -5,7 +5,7 @@ import 'package:skhuthon_app/app_router.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  KakaoSdk.init(nativeAppKey: 'bf370596df3bdacaf5ef897368c35ea2');
+  KakaoSdk.init(nativeAppKey: '0065524053bb6be5edf838e8a5884eb8');
   runApp(const ProviderScope(child: App()));
 }
 
