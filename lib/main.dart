@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:skhuthon_app/screen/Login/loginScreen.dart';
+import 'package:skhuthon_app/screens/Login/login_screen.dart';
 
 void main() {
   runApp(const App());
