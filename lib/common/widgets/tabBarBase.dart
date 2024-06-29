@@ -32,7 +32,7 @@ class TabBarBase extends ConsumerWidget {
         ref.read(tabBarProvider.notifier).updateIndex(i);
         switch (i) {
           case 0:
-            router.go('/profile');
+            router.go('/friendsList');
             break;
           case 1:
             router.go('/');
