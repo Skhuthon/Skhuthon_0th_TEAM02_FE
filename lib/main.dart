@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:skhuthon_app/screens/Login/login_screen.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
+import 'package:skhuthon_app/app_router.dart';
 
 void main() {
-  runApp(const App());
+  WidgetsFlutterBinding.ensureInitialized();
+  KakaoSdk.init(nativeAppKey: '0065524053bb6be5edf838e8a5884eb8');
+  runApp(const ProviderScope(child: App()));
 }
 
-class App extends StatelessWidget {
+class App extends ConsumerWidget {
   const App({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(360, 690),
-      builder: (context, child) => MaterialApp(
-        theme: ThemeData(fontFamily: "NaNumPen", useMaterial3: true),
-        title: 'SweetLittleKitty',
-        home: LoginScreen(),
-      ),
+  Widget build(BuildContext context, WidgetRef ref) {
+    final router = ref.watch(routerProvider);
+
+    return MaterialApp.router(
+      routeInformationParser: router.routeInformationParser,
+      routerDelegate: router.routerDelegate,
+      routeInformationProvider: router.routeInformationProvider,
     );
   }
 }
