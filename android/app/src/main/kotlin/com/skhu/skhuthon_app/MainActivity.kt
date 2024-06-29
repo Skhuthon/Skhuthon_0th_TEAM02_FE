@@ -1,4 +1,4 @@
-package com.example.skhuthon_app
+package com.skhu.skhuthon_app
 
 import io.flutter.embedding.android.FlutterActivity
 
