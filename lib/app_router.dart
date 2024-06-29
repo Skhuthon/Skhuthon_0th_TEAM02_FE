@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import 'screens/Home/home_screen.dart';
-import 'screens/Login/login_screen.dart';
+import 'screens/home/home_screen.dart';
+import 'screens/login/login_screen.dart';
 import 'providers/auth_provider.dart';
 
 final _key = GlobalKey<NavigatorState>();

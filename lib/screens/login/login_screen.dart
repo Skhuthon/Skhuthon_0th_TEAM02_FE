@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../model/common/color.dart';
@@ -25,9 +24,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if (size == null) {
-      return const SizedBox.shrink();
-    }
     return Scaffold(
       backgroundColor: WHITE,
       body: Center(
