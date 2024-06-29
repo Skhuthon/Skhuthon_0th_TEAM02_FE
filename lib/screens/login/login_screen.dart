@@ -1,29 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:skhuthon_app/providers/auth_provider.dart';
 
 import '../../common/color.dart';
 
-class LoginScreen extends StatefulWidget {
+// 상태 관리를 위한 Provider 선언
+final loginProvider = ChangeNotifierProvider((ref) => LoginProvider());
+
+class LoginProvider extends ChangeNotifier {
+  // 필요한 상태 변수 선언
+  // 예: 로그인 버튼 클릭 여부 등
+
+  // 상태 변수 관련 메소드 구현
+  // 예: 로그인 버튼 클릭 처리 등
+}
+
+class LoginScreen extends ConsumerWidget {
   const LoginScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final size = MediaQuery.of(context).size;
+    final authController = ref.watch(authProvider);
 
-class _LoginScreenState extends State<LoginScreen> {
-  late Size size;
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      setState(() {
-        size = MediaQuery.of(context).size;
-      });
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: WHITE,
       body: Center(
@@ -46,7 +45,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       style: TextStyle(fontSize: 50, color: BLACK)),
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    await authController.login();
+                  },
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(
                       horizontal: size.width * 0.2,
