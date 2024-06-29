@@ -14,7 +14,7 @@ class FriendsListScreen extends StatefulWidget {
 
 class _FriendsListScreenState extends State<FriendsListScreen> {
   User user =
-  User(name: 'a', email: 'd', followingList: ['이인협', '강두오', '김나윤']);
+  User(name: '남궁혜민', email: 'hyemin@gmail.com', followingList: ['이인협', '강두오', '김나윤']);
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -29,8 +29,7 @@ class _FriendsListScreenState extends State<FriendsListScreen> {
       body:Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          SizedBox(height: 20,),
-
+          const SizedBox(height: 20,),
           FutureBuilder<List<String>?>(
             future: Future.delayed(
                 const Duration(seconds: 1), () => user.followingList),

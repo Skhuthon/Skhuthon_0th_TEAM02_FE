@@ -1,10 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:skhuthon_app/common/color.dart';
 import 'package:skhuthon_app/common/widgets/tabBarBase.dart';
 import 'package:skhuthon_app/providers/post_provider.dart';
-
-import '../../models/post.dart';
 
 class PostShowScreen extends StatefulWidget {
   const PostShowScreen({super.key});
@@ -20,12 +17,12 @@ class _PostShowScreenState extends State<PostShowScreen> {
     return  Scaffold(
       appBar: AppBar(
         backgroundColor: BASE,
-        title: Text('Title'),
+        title: const Text('Title'),
       ),
       body: Center(
         child: Column(
           children: [
-            Padding(padding: EdgeInsets.all(30)),
+            const Padding(padding: EdgeInsets.all(30)),
             Container(
                 width: 390,
                 height: 48,
@@ -47,7 +44,7 @@ class _PostShowScreenState extends State<PostShowScreen> {
                 child: const Center(
                   child: Text(""),
                 )),
-            Padding(padding: EdgeInsets.all(20)),
+            const Padding(padding: EdgeInsets.all(20)),
             Container(
                 width: 390,
                 height: 550,
@@ -72,7 +69,7 @@ class _PostShowScreenState extends State<PostShowScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: TabBarBase(),
+      bottomNavigationBar: const TabBarBase(),
     );
   }
 }
