@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:skhuthon_app/common/widgets/tabBarBase.dart';
 
 import '../../common/color.dart';
@@ -82,7 +83,9 @@ class _SettingScreenState extends State<SettingScreen> {
             const Text('My Post', style: TextStyle(fontSize: 23)),
             const Padding(padding: EdgeInsets.all(5)),
             ElevatedButton(
-              onPressed: () async {},
+              onPressed: () {
+                    context.go('/myPosts');
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: WHITE,
                 surfaceTintColor: BASE,
@@ -95,7 +98,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 elevation: 0,
               ),
               child: const Text(
-                '내 글 보러가기 ',
+                '내 글 보러가기',
                 style: TextStyle(
                   color: BLACK,
                   fontSize: 17,

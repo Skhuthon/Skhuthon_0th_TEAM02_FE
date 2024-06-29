@@ -30,7 +30,7 @@ class _FriendPostScreenState extends State<FriendPostScreen> {
                 decoration: ShapeDecoration(
                   color: Colors.white,
                   shape: RoundedRectangleBorder(
-                    side: BorderSide(width: 1, color: Color(0xFFC8C8C8)),
+                    side: const BorderSide(width: 1, color: Color(0xFFC8C8C8)),
                     borderRadius: BorderRadius.circular(14),
                   ),
                   shadows: const [
@@ -52,7 +52,7 @@ class _FriendPostScreenState extends State<FriendPostScreen> {
                 decoration: ShapeDecoration(
                   color: Colors.white,
                   shape: RoundedRectangleBorder(
-                    side: BorderSide(width: 1, color: Color(0xFFC8C8C8)),
+                    side: const BorderSide(width: 1, color: Color(0xFFC8C8C8)),
                     borderRadius: BorderRadius.circular(14),
                   ),
                   shadows: const [
