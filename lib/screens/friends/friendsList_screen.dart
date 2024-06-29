@@ -13,7 +13,9 @@ class FriendsList_Screen extends StatefulWidget {
 }
 
 class _FriendsList_ScreenState extends State<FriendsList_Screen> {
-  User user = User(name: 'a', email: 'd', followingList: ['user1', 'user2', 'user3']);
+  User user =
+  User(name: 'a', email: 'd', followingList: ['user1', 'user2', 'user3']);
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -26,15 +28,16 @@ class _FriendsList_ScreenState extends State<FriendsList_Screen> {
       body: Center(
         child: Column(
           children: [
-            const Text('MyPost')
-            // sharedReperance를 통해 받아온 것들 구현
-            ,
+            const Text('MyPost'),
             const Text('Following List'),
             FutureBuilder<List<String>?>(
-              future: Future.delayed(const Duration(seconds: 1), () => user.followingList),
-              builder: (BuildContext context, AsyncSnapshot<List<String>?> snapshot) {
+              future: Future.delayed(
+                  const Duration(seconds: 1), () => user.followingList),
+              builder: (BuildContext context,
+                  AsyncSnapshot<List<String>?> snapshot) {
                 if (snapshot.hasData) {
                   return ListView.separated(
+                    shrinkWrap: true,
                     itemBuilder: (context, index) {
                       return ListTile(
                         title: Text('Username: ${snapshot.data![index]}',
@@ -53,10 +56,52 @@ class _FriendsList_ScreenState extends State<FriendsList_Screen> {
                 }
               },
             ),
-           Padding(padding: EdgeInsets.all(330)),
-           ElevatedButton(
-              onPressed: () async {
-              },
+            const SizedBox(height: 16.0),
+            ElevatedButton(
+              onPressed: () => showDialog<String>(
+                context: context,
+                builder: (BuildContext context) => Dialog(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        SizedBox(
+                          width: 200, // 제한된 너비 설정
+                          child: Form(
+                            key: _formKey,
+                            child: TextFormField(
+                              decoration: const InputDecoration(
+                                border: OutlineInputBorder(),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: BLACK,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 10.0),
+                        SizedBox(
+                          width: 100, // 제한된 너비 설정
+                          child: TextButton(
+                            onPressed: () {
+                              final formKeyState = _formKey.currentState!;
+                              if (formKeyState.validate()) {
+                                formKeyState.save();
+                                Navigator.pop(context);
+                              }
+                            },
+                            child: const Text('Submit', style: TextStyle(fontSize: 15),),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.symmetric(
                   horizontal: size.width * 0.2,
@@ -71,10 +116,10 @@ class _FriendsList_ScreenState extends State<FriendsList_Screen> {
               child: const Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.person_add, color: Colors.white,),
-                   SizedBox(width: 8),
-                   Padding(padding: EdgeInsets.all(5)),
-                   Text(
+                  Icon(Icons.person_add, color: Colors.white),
+                  SizedBox(width: 0.8),
+                  Padding(padding: EdgeInsets.all(5)),
+                  Text(
                     'Add Friends',
                     style: TextStyle(
                       color: BLACK,
