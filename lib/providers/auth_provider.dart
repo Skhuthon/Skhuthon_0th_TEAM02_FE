@@ -55,8 +55,7 @@ class AuthController with ChangeNotifier {
         final String accessToken = data['data'];
         log(accessToken.toString());
         await storage.write(key: 'accessToken', value: accessToken);
-      }
-      else {
+      } else {
         log('로그인 실패: ${response.statusCode}');
       }
 
@@ -68,7 +67,7 @@ class AuthController with ChangeNotifier {
   }
 
   Future<void> logout() async {
-    //서버 로그아웃 로직 필요
+    await storage.deleteAll();
     isLogin = false;
     notifyListeners();
   }
