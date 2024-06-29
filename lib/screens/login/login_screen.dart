@@ -27,14 +27,16 @@ class LoginScreen extends ConsumerWidget {
               children: [
                 SizedBox(
                   width: size.height * 0.2,
-                  child: const Text('Title',
-                      style: TextStyle(fontSize: 100, color: BLACK)),
+                  child: const Text('TraBlog',
+                      style: TextStyle(fontSize: 65, color: BLACK, fontFamily:'NanumPen')),
                 ),
-                SizedBox(
-                  width: size.height * 0.2,
-                  child: const Text(' sub Title',
-                      style: TextStyle(fontSize: 50, color: BLACK)),
-                ),
+                Row(children: [const SizedBox(width: 45,),SizedBox(
+                  width: size.height * 0.4,
+                  child: const Text('Make a note of your memory',
+                      style: TextStyle(fontSize: 30, color: BLACK, fontFamily:'NanumPen')),
+                ),],)
+,
+                SizedBox(height: 50),
                 ElevatedButton(
                   onPressed: () async {
                     await authController.loginWithKakao().then((user) {

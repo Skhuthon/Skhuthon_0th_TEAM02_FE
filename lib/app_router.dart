@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:skhuthon_app/screens/friends/friendPost_screen.dart';
 import 'package:skhuthon_app/screens/friends/friendsList_screen.dart';
 import 'package:skhuthon_app/screens/home/home_screen.dart';
+import 'package:skhuthon_app/screens/post/myPost_screen.dart';
 import 'package:skhuthon_app/screens/post/post_screen.dart';
 import 'package:skhuthon_app/screens/setting/setting_screen.dart';
 
@@ -19,28 +20,28 @@ final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
       navigatorKey: _key,
       debugLogDiagnostics: true,
-      initialLocation: '/',
+      initialLocation: '/setting',
       refreshListenable: authState,
-      
+
       routes: [
         GoRoute(
-          path: '/',
-          name: 'home',
-          builder: (context, state) => const HomeScreen(),
-          routes: [
-            GoRoute(
-              path: 'post',
-              name: 'post',
-              builder: (context, state) => PostScreen(),
-              routes: [
-                GoRoute(
-                  path: 'select',
-                  name: 'select',
-                  builder: (context, state) => const SelectLocationScreen(),
-                ),
-              ]
-            )
-          ]
+            path: '/',
+            name: 'home',
+            builder: (context, state) => const HomeScreen(),
+            routes: [
+              GoRoute(
+                  path: 'post',
+                  name: 'post',
+                  builder: (context, state) => PostScreen(),
+                  routes: [
+                    GoRoute(
+                      path: 'select',
+                      name: 'select',
+                      builder: (context, state) => const SelectLocationScreen(),
+                    ),
+                  ]
+              )
+            ]
         ),
         GoRoute(
           path: '/login',
@@ -48,33 +49,39 @@ final routerProvider = Provider<GoRouter>((ref) {
           builder: (context, state) => const LoginScreen(),
         ),
         GoRoute(
-          path: '/friendsList',
-          name: 'friendsList',
-          builder: (context, state) => const FriendsListScreen()
+            path: '/friendsList',
+            name: 'friendsList',
+            builder: (context, state) => const FriendsListScreen()
         ),
         GoRoute(
-          path: '/friendPost',
-          name: 'friendPost',
-          builder: (context, state) => const FriendPostScreen()
+            path: '/friendPost',
+            name: 'friendPost',
+            builder: (context, state) => const FriendPostScreen()
         ),
         GoRoute(
-          path: '/setting',
-          name: 'setting',
-          builder: (context, state) => const SettingScreen()
+            path: '/setting',
+            name: 'setting',
+            builder: (context, state) => const SettingScreen()
         ),
+        GoRoute(
+            path: '/myPosts',
+            name: 'myPosts',
+            builder: (context, state) => const MyPostScreen()
+        ),
+
       ],
       redirect: (context, state) {
-        final currentState = state.fullPath == "/login";
-        final isLogin = authState.isLogin;
-
-        if (currentState && isLogin) {
-          return '/';
-        }
-
-        if (!currentState && !isLogin) {
-          return '/login';
-        }
-        
+        //   final currentState = state.fullPath == "/login";
+        //   final isLogin = authState.isLogin;
+        //
+        //   if (currentState && isLogin) {
+        //     return '/';
+        //   }
+        //
+        //   if (!currentState && !isLogin) {
+        //     return '/login';
+        //   }
+        //
         return null;
       });
 });

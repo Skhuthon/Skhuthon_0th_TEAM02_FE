@@ -1,25 +1,27 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:skhuthon_app/common/color.dart';
 import 'package:skhuthon_app/common/widgets/tabBarBase.dart';
+import 'package:skhuthon_app/providers/post_provider.dart';
 
-import '../../common/color.dart';
+import '../../models/post.dart';
 
-class FriendPostScreen extends StatefulWidget {
-  const FriendPostScreen({super.key});
+class PostShowScreen extends StatefulWidget {
+  const PostShowScreen({super.key});
 
   @override
-  State<FriendPostScreen> createState() => _FriendPostScreenState();
+  State<PostShowScreen> createState() => _PostShowScreenState();
 }
 
-class _FriendPostScreenState extends State<FriendPostScreen> {
+class _PostShowScreenState extends State<PostShowScreen> {
+  PostNotifier postNotifier = PostNotifier();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return  Scaffold(
       appBar: AppBar(
-          backgroundColor: BASE,
-          title: const Text(
-            'Friends_Post',
-
-          )),
+        backgroundColor: BASE,
+        title: Text('Title'),
+      ),
       body: Center(
         child: Column(
           children: [
@@ -43,7 +45,7 @@ class _FriendPostScreenState extends State<FriendPostScreen> {
                   ],
                 ),
                 child: const Center(
-                  child: Text('HIIIH KJEKNSLKJKRJKLE LK EN'),
+                  child: Text(""),
                 )),
             Padding(padding: EdgeInsets.all(20)),
             Container(

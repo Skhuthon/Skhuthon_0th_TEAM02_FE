@@ -46,7 +46,7 @@ class _SettingScreenState extends State<SettingScreen> {
                   children: [
                     SizedBox(width: 15),
                     Text(
-                      'HIIIH KJEKNSLKJKRJKLE LK EN',
+                      '남궁혜민',
                       style: TextStyle(fontSize: 15),
                     ),
                   ],
@@ -74,37 +74,43 @@ class _SettingScreenState extends State<SettingScreen> {
                   children: [
                     SizedBox(width: 15),
                     Text(
-                      'HIIIH KJEKNSLKJKRJKLE LK EN',
+                      'ng040115@gmail.com',
                       style: TextStyle(fontSize: 15),
                     ),
                   ],
                 )),
-            const SizedBox(height: 200),
+            const SizedBox(height: 130),
             const Text('My Post', style: TextStyle(fontSize: 23)),
             const Padding(padding: EdgeInsets.all(5)),
-            ElevatedButton(
-              onPressed: () {
+            ButtonTheme(
+              child: ElevatedButton(
+                  onPressed: () {
                     context.go('/myPosts');
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: WHITE,
-                surfaceTintColor: BASE,
-                foregroundColor: BASE,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 140, vertical: 15),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                elevation: 0,
-              ),
-              child: const Text(
-                '내 글 보러가기',
-                style: TextStyle(
-                  color: BLACK,
-                  fontSize: 17,
-                  fontFamily: 'Ink Free',
-                  fontWeight: FontWeight.w400,
-                ),
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: WHITE,
+                    surfaceTintColor: BASE,
+                    foregroundColor: BASE,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 140, vertical: 15),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    elevation: 0,
+                  ),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: const Text(
+                      '내 글 보러가기',
+                      style: TextStyle(
+                        color: BLACK,
+                        fontSize: 17,
+                        fontFamily: 'Ink Free',
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  )
+                // SizedBox(width: 10)
               ),
             ),
             SizedBox(height: 130),
@@ -136,7 +142,8 @@ class _SettingScreenState extends State<SettingScreen> {
                   ],
                 ),
               ),
-              width: 400,height: 60,
+              width: 400,
+              height: 60,
             )
           ],
         ),

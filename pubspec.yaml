@@ -104,5 +104,5 @@ flutter:
   fonts:
     - family: NanumPen
       fonts:
-        - asset: assets/fonts/NanumPen.otf
+        - asset: assets/fonts/NanumPen.ttf
           weight: 600
