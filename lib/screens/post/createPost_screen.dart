@@ -4,8 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../common/widgets/TextFieldWidget.dart';
 import '../../common/widgets/tabBarBase.dart';
 
-
-final createPostScreenProvider = ChangeNotifierProvider((ref) => CreatePostScreenProvider());
+/*final createPostScreenProvider = ChangeNotifierProvider((ref) => CreatePostScreenProvider());
 
 class CreatePostScreenProvider extends ChangeNotifier {
   final _formKey = GlobalKey<FormState>();
@@ -56,4 +55,4 @@ class CreatePostScreen extends ConsumerWidget {
       bottomNavigationBar: const TabBarBase(),
     );
   }
-}
+}*/
