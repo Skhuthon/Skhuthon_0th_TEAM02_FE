@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:skhuthon_app/common/widgets/tabBarBase.dart';
 
+import '../../common/color.dart';
+
 class FriendPostScreen extends StatefulWidget {
   const FriendPostScreen({super.key});
 
@@ -13,6 +15,7 @@ class _FriendPostScreenState extends State<FriendPostScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: BASE,
           title: const Text(
         'Friends_Post',
 

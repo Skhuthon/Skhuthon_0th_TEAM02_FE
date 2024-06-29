@@ -32,7 +32,7 @@ class CreatePostScreen extends ConsumerWidget {
     final createPostScreenProvider = ref.watch(textProvider);
 // Post 누르면 등록되도록 로직 구현
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(     backgroundColor: BASE, title: ),
       body: Center(
         child: Column(
           children: [

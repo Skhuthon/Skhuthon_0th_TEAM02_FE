@@ -24,6 +24,7 @@ class _FriendsListScreenState extends State<FriendsListScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Friends'),
+        backgroundColor: BASE,
       ),
       body: Center(
         child: Column(
