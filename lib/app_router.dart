@@ -20,7 +20,7 @@ final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
       navigatorKey: _key,
       debugLogDiagnostics: true,
-      initialLocation: '/setting',
+      initialLocation: '/',
       refreshListenable: authState,
 
       routes: [
@@ -71,17 +71,17 @@ final routerProvider = Provider<GoRouter>((ref) {
 
       ],
       redirect: (context, state) {
-        //   final currentState = state.fullPath == "/login";
-        //   final isLogin = authState.isLogin;
-        //
-        //   if (currentState && isLogin) {
-        //     return '/';
-        //   }
-        //
-        //   if (!currentState && !isLogin) {
-        //     return '/login';
-        //   }
-        //
+          final currentState = state.fullPath == "/login";
+          final isLogin = authState.isLogin;
+        
+          if (currentState && isLogin) {
+            return '/';
+          }
+        
+          if (!currentState && !isLogin) {
+            return '/login';
+          }
+        
         return null;
       });
 });

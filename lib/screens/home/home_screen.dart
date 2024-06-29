@@ -11,7 +11,6 @@ class HomeScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBar(),
       body: const HomeMap(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

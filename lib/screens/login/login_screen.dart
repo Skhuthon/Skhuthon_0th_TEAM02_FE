@@ -30,13 +30,13 @@ class LoginScreen extends ConsumerWidget {
                   child: const Text('TraBlog',
                       style: TextStyle(fontSize: 65, color: BLACK, fontFamily:'NanumPen')),
                 ),
-                Row(children: [const SizedBox(width: 45,),SizedBox(
-                  width: size.height * 0.4,
-                  child: const Text('Make a note of your memory',
-                      style: TextStyle(fontSize: 30, color: BLACK, fontFamily:'NanumPen')),
-                ),],)
-,
-                SizedBox(height: 50),
+                Row(
+                  children: [
+                    SizedBox(width: MediaQuery.of(context).size.width * 0.2,),
+                    const Text('Make a note of your memory', style: TextStyle(fontSize: 30, color: BLACK, fontFamily:'NanumPen')),
+                  ],
+                ),
+                const SizedBox(height: 50),
                 ElevatedButton(
                   onPressed: () async {
                     await authController.loginWithKakao().then((user) {

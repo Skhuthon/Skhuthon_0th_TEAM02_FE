@@ -8,7 +8,6 @@ import 'package:skhuthon_app/app_router.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   KakaoSdk.init(nativeAppKey: '0065524053bb6be5edf838e8a5884eb8');
-  log(await KakaoSdk.origin);
   await NaverMapSdk.instance.initialize(
       clientId: 'qop4zo2ija',
       onAuthFailed: (e) {
@@ -25,6 +24,7 @@ class App extends ConsumerWidget {
     final router = ref.watch(routerProvider);
 
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       routeInformationParser: router.routeInformationParser,
       routerDelegate: router.routerDelegate,
       routeInformationProvider: router.routeInformationProvider,
