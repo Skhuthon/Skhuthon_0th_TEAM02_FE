@@ -1,26 +1,35 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:http/http.dart' as http;
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart' as k;
+import 'package:kakao_flutter_sdk/kakao_flutter_sdk_auth.dart';
 import '../models/user.dart';
 
 class AuthController with ChangeNotifier {
+  bool isLogin = false;
+  FlutterSecureStorage storage = const FlutterSecureStorage();
+
   Future<User?> loginWithKakao() async {
     try {
+      OAuthToken token;
       if (await k.isKakaoTalkInstalled()) {
         try {
-          await k.UserApi.instance.loginWithKakaoTalk();
+          token = await k.UserApi.instance.loginWithKakaoTalk();
           log("카카오톡 로그인 성공");
         } catch (e) {
           log("카카오톡 로그인 실패 : $e");
-          await k.UserApi.instance.loginWithKakaoAccount();
+          token = await k.UserApi.instance.loginWithKakaoAccount();
           log("카카오 계정 로그인 성공");
         }
       } else {
-        await k.UserApi.instance.loginWithKakaoAccount();
+        token = await k.UserApi.instance.loginWithKakaoAccount();
         log("카카오 계정 로그인 성공");
       }
       k.User kakaoUser = await k.UserApi.instance.me();
+      await storage.write(key: 'kakaoToken', value: token.accessToken);
       return User(
         name: kakaoUser.kakaoAccount!.name!,
         email: kakaoUser.kakaoAccount!.email!,
@@ -31,14 +40,37 @@ class AuthController with ChangeNotifier {
     }
   }
 
-  Future<void> login() async {
-    User? user = await loginWithKakao();
+  Future<void> login(User? user) async {
+    String? token = await storage.read(key: 'kakaoToken');
     if (user != null) {
-      //서버 로그인 로직 필요
+      final response = await http.get(
+        Uri.parse('http://54.180.215.240:8080/api/v1/kakao/callback?code=$token'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        final String accessToken = data['data'];
+        log(accessToken.toString());
+        await storage.write(key: 'accessToken', value: accessToken);
+      }
+      else {
+        log('로그인 실패: ${response.statusCode}');
+      }
+
+      isLogin = true;
       notifyListeners();
     } else {
       return;
     }
+  }
+
+  Future<void> logout() async {
+    //서버 로그아웃 로직 필요
+    isLogin = false;
+    notifyListeners();
   }
 }
 

@@ -64,8 +64,17 @@ final routerProvider = Provider<GoRouter>((ref) {
         ),
       ],
       redirect: (context, state) {
-        return null;
+        final currentState = state.fullPath == "/login";
+        final isLogin = authState.isLogin;
 
-        //리다이렉트 로직 필요
+        if (currentState && isLogin) {
+          return '/';
+        }
+
+        if (!currentState && !isLogin) {
+          return '/login';
+        }
+        
+        return null;
       });
 });

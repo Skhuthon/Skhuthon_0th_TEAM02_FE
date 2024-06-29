@@ -8,12 +8,12 @@ import 'package:skhuthon_app/app_router.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   KakaoSdk.init(nativeAppKey: '0065524053bb6be5edf838e8a5884eb8');
+  log(await KakaoSdk.origin);
   await NaverMapSdk.instance.initialize(
-    clientId: 'qop4zo2ija',
-    onAuthFailed: (e) {
-      log('네이버 지도 인증 오류 : $e');
-    }
-  );
+      clientId: 'qop4zo2ija',
+      onAuthFailed: (e) {
+        log('네이버 지도 인증 오류 : $e');
+      });
   runApp(const ProviderScope(child: App()));
 }
 

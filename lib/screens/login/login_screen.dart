@@ -1,19 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:skhuthon_app/providers/auth_provider.dart';
+import 'package:skhuthon_app/providers/user_provider.dart';
 
 import '../../common/color.dart';
-
-// 상태 관리를 위한 Provider 선언
-final loginProvider = ChangeNotifierProvider((ref) => LoginProvider());
-
-class LoginProvider extends ChangeNotifier {
-  // 필요한 상태 변수 선언
-  // 예: 로그인 버튼 클릭 여부 등
-
-  // 상태 변수 관련 메소드 구현
-  // 예: 로그인 버튼 클릭 처리 등
-}
 
 class LoginScreen extends ConsumerWidget {
   const LoginScreen({super.key});
@@ -22,6 +12,7 @@ class LoginScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final size = MediaQuery.of(context).size;
     final authController = ref.watch(authProvider);
+    final userState = ref.read(userProvider.notifier);
 
     return Scaffold(
       backgroundColor: WHITE,
@@ -46,7 +37,12 @@ class LoginScreen extends ConsumerWidget {
                 ),
                 ElevatedButton(
                   onPressed: () async {
-                    await authController.login();
+                    await authController.loginWithKakao().then((user) {
+                      if (user != null) {
+                        authController.login(user);
+                        userState.setUser(user);
+                      }
+                    });
                   },
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(
