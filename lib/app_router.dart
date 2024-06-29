@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:skhuthon_app/screens/friends/friendPost_screen.dart';
 import 'package:skhuthon_app/screens/friends/friendsList_screen.dart';
 import 'package:skhuthon_app/screens/home/home_screen.dart';
 import 'package:skhuthon_app/screens/post/createPost_screen.dart';
@@ -17,7 +18,7 @@ final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
       navigatorKey: _key,
       debugLogDiagnostics: true,
-      initialLocation: '/friendsList',
+      initialLocation: '/friendPost',
       refreshListenable: authState,
 
       routes: [
@@ -36,8 +37,14 @@ final routerProvider = Provider<GoRouter>((ref) {
         GoRoute(
           path: '/friendsList',
           name: 'friendsList',
-          builder: (context, state) => const FriendsList_Screen()
-        )
+          builder: (context, state) => const FriendsListScreen()
+        ),
+        GoRoute(
+            path: '/friendPost',
+            name: 'friendPost',
+            builder: (context, state) => const FriendPostScreen()
+        ),
+
       ],
 
       redirect: (context, state) {

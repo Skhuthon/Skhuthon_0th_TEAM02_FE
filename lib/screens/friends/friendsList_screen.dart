@@ -5,14 +5,14 @@ import 'package:skhuthon_app/common/widgets/tabBarBase.dart';
 import '../../common/color.dart';
 import '../../models/user.dart';
 
-class FriendsList_Screen extends StatefulWidget {
-  const FriendsList_Screen({super.key});
+class FriendsListScreen extends StatefulWidget {
+  const FriendsListScreen({super.key});
 
   @override
-  State<FriendsList_Screen> createState() => _FriendsList_ScreenState();
+  State<FriendsListScreen> createState() => _FriendsListScreenState();
 }
 
-class _FriendsList_ScreenState extends State<FriendsList_Screen> {
+class _FriendsListScreenState extends State<FriendsListScreen> {
   User user =
   User(name: 'a', email: 'd', followingList: ['user1', 'user2', 'user3']);
   final _formKey = GlobalKey<FormState>();
